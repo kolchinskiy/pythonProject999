@@ -6,9 +6,10 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
+from group import Group
 
 
-class TestCaseGroups(unittest.TestCase):
+class TestGroups(unittest.TestCase):
     def setUp(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
@@ -18,7 +19,7 @@ class TestCaseGroups(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_groups_page(wd)
-        self.create_new_group(wd, name="group 39", header="123", footer="321")
+        self.create_new_group(wd, Group(name="group 39", header="123", footer="321"))
         self.open_groups_page_2(wd)
         self.logout(wd)
 
@@ -27,7 +28,7 @@ class TestCaseGroups(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_groups_page(wd)
-        self.create_new_group(wd, name="", header="", footer="")
+        self.create_new_group(wd, Group(name="", header="", footer=""))
         self.open_groups_page_2(wd)
         self.logout(wd)
 
@@ -38,19 +39,19 @@ class TestCaseGroups(unittest.TestCase):
     def open_groups_page_2(self, wd):
         wd.find_element_by_link_text("group page").click()
 
-    def create_new_group(self, wd, name, header, footer):
+    def create_new_group(self, wd, group):
         # create_new_group
         wd.find_element_by_name("new").click()
         # complete_form
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(name)
+        wd.find_element_by_name("group_name").send_keys(group.name)
         wd.find_element_by_name("group_header").click()
         wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(header)
+        wd.find_element_by_name("group_header").send_keys(group.header)
         wd.find_element_by_name("group_footer").click()
         wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(footer)
+        wd.find_element_by_name("group_footer").send_keys(group.footer)
         wd.find_element_by_xpath("//form[@action='/addressbook/group.php']").click()
         # save_group
         wd.find_element_by_name("submit").click()
