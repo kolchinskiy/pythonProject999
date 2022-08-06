@@ -18,7 +18,9 @@ class TestAdress(unittest.TestCase):
         wd = self.wd
         self.open_main_page(wd)
         self.login(wd)
-        self.create_address(wd, Contact(firstname="Ivan", middlename="Ivanovich", lastname="Ivanov", mobile="88001234567"))
+        self.create_address(wd,
+                            Contact(firstname="Ivan", middlename="Ivanovich", lastname="Ivanov", mobile="88001234567",
+                            email="ivanov@mail.ru"))
         self.open_main_page(wd)
         self.logout(wd)
 
@@ -41,7 +43,7 @@ class TestAdress(unittest.TestCase):
         wd.find_element_by_name("mobile").send_keys(contact.mobile)
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys("ivanov@mail.ru")
+        wd.find_element_by_name("email").send_keys(contact.email)
         wd.find_element_by_name("theform").click()
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
