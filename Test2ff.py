@@ -33,7 +33,6 @@ class TestGroups(unittest.TestCase):
         self.logout(wd)
 
     def logout(self, wd):
-        # logout
         wd.find_element_by_link_text("Logout").click()
 
     def open_groups_page_2(self, wd):

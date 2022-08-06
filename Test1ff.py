@@ -13,7 +13,7 @@ class UntitledTestCase80(unittest.TestCase):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
-    def test_untitled_test_case80(self):
+    def test_new_group_(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/")
         wd.find_element_by_name("user").click()
