@@ -1,9 +1,9 @@
-class GroupHelper:
+class GroupContactHelper:
 
     def __init__(self, app):
         self.app = app
 
-    def create(self, group):
+    def create_group(self, group):
         wd = self.app.wd
         self.open_groups_page()
         # create_new_group
@@ -34,3 +34,23 @@ class GroupHelper:
         # delete selected group
         wd.find_element_by_name("delete").click()
         self.open_groups_page()
+
+    def create_contact(self, contact):
+        wd = self.app.wd
+        wd.find_element_by_link_text("add new").click()
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(contact.firstname)
+        wd.find_element_by_name("middlename").click()
+        wd.find_element_by_name("middlename").clear()
+        wd.find_element_by_name("middlename").send_keys(contact.middlename)
+        wd.find_element_by_name("lastname").click()
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(contact.lastname)
+        wd.find_element_by_name("mobile").click()
+        wd.find_element_by_name("mobile").clear()
+        wd.find_element_by_name("mobile").send_keys(contact.mobile)
+        wd.find_element_by_name("email").click()
+        wd.find_element_by_name("email").clear()
+        wd.find_element_by_name("email").send_keys(contact.email)
+        self.app.open_main_page()

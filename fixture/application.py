@@ -1,6 +1,6 @@
 from selenium import webdriver
-from fixture_groups.session import SessionHelper
-from fixture_groups.group import GroupHelper
+from fixture.session_helper import SessionHelper
+from fixture.group_contact_helper import GroupContactHelper
 
 
 class Application:
@@ -9,9 +9,10 @@ class Application:
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
         self.session = SessionHelper(self)
-        self.group = GroupHelper(self)
+        self.group = GroupContactHelper(self)
+        self.contact = GroupContactHelper(self)
 
-    def open_home_page(self):
+    def open_main_page(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/")
 
