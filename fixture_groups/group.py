@@ -18,7 +18,6 @@ class GroupHelper:
         wd.find_element_by_name("group_footer").click()
         wd.find_element_by_name("group_footer").clear()
         wd.find_element_by_name("group_footer").send_keys(group.footer)
-        wd.find_element_by_xpath("//form[@action='/addressbook/group.php']").click()
         # save_group
         wd.find_element_by_name("submit").click()
         self.open_groups_page()
