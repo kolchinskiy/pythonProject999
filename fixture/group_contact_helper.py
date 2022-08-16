@@ -53,4 +53,5 @@ class GroupContactHelper:
         wd.find_element_by_name("email").click()
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(contact.email)
+        wd.find_element_by_name("submit").click()
         self.app.open_main_page()
