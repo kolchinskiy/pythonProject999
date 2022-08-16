@@ -22,9 +22,26 @@ class GroupContactHelper:
         wd.find_element_by_name("submit").click()
         self.open_groups_page()
 
-    def open_groups_page(self):
+    def edit_first_group(self, group):
         wd = self.app.wd
-        wd.find_element_by_link_text("groups").click()
+        self.open_groups_page()
+        # select_first_group
+        wd.find_element_by_name("selected[]").click()
+        # click_button_Edit
+        wd.find_element_by_name("edit").click()
+        # complete_form
+        wd.find_element_by_name("group_name").click()
+        wd.find_element_by_name("group_name").clear()
+        wd.find_element_by_name("group_name").send_keys(group.name)
+        wd.find_element_by_name("group_header").click()
+        wd.find_element_by_name("group_header").clear()
+        wd.find_element_by_name("group_header").send_keys(group.header)
+        wd.find_element_by_name("group_footer").click()
+        wd.find_element_by_name("group_footer").clear()
+        wd.find_element_by_name("group_footer").send_keys(group.footer)
+        # save_edited_group
+        wd.find_element_by_name("update").click()
+        self.open_groups_page()
 
     def delete_first_group(self):
         wd = self.app.wd
@@ -34,6 +51,10 @@ class GroupContactHelper:
         # delete selected group
         wd.find_element_by_name("delete").click()
         self.open_groups_page()
+
+    def open_groups_page(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("groups").click()
 
     def create_contact(self, contact):
         wd = self.app.wd
@@ -56,6 +77,30 @@ class GroupContactHelper:
         wd.find_element_by_name("submit").click()
         self.app.open_main_page()
 
+    def edit_first_contact(self, contact):
+        wd = self.app.wd
+        # push_the_button_Edit
+        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        # complete_form
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(contact.firstname)
+        wd.find_element_by_name("middlename").click()
+        wd.find_element_by_name("middlename").clear()
+        wd.find_element_by_name("middlename").send_keys(contact.middlename)
+        wd.find_element_by_name("lastname").click()
+        wd.find_element_by_name("lastname").clear()
+        wd.find_element_by_name("lastname").send_keys(contact.lastname)
+        wd.find_element_by_name("mobile").click()
+        wd.find_element_by_name("mobile").clear()
+        wd.find_element_by_name("mobile").send_keys(contact.mobile)
+        wd.find_element_by_name("email").click()
+        wd.find_element_by_name("email").clear()
+        wd.find_element_by_name("email").send_keys(contact.email)
+        # saving_new_form
+        wd.find_element_by_name("update").click()
+        self.app.open_main_page()
+
     def delete_first_contact(self):
         wd = self.app.wd
         # select first contact
@@ -64,24 +109,3 @@ class GroupContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # approve deletion
         wd.switch_to.alert.accept()
-
-    def edit_group(self, group):
-        wd = self.app.wd
-        self.open_groups_page()
-        # select_first_group
-        wd.find_element_by_name("selected[]").click()
-        # click_button_Edit
-        wd.find_element_by_name("edit").click()
-        # complete_form
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(group.name)
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(group.header)
-        wd.find_element_by_name("group_footer").click()
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(group.footer)
-        # save_edited_group
-        wd.find_element_by_name("update").click()
-        self.open_groups_page()
