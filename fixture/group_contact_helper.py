@@ -55,3 +55,12 @@ class GroupContactHelper:
         wd.find_element_by_name("email").send_keys(contact.email)
         wd.find_element_by_name("submit").click()
         self.app.open_main_page()
+
+    def delete_first_contact(self):
+        wd = self.app.wd
+        # select first contact
+        wd.find_element_by_name("selected[]").click()
+        # delete selected contact
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        # approve deletion
+        wd.switch_to.alert.accept()
