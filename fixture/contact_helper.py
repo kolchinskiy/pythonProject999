@@ -22,7 +22,6 @@ class ContactHelper:
         self.app.open_main_page()
 
     def complete_form(self, contact):
-        wd = self.app.wd
         self.change_fiend_value("firstname", contact.firstname)
         self.change_fiend_value("middlename", contact.middlename)
         self.change_fiend_value("lastname", contact.lastname)
